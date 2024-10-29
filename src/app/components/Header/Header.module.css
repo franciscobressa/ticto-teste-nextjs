@@ -1,0 +1,11 @@
+.header {
+  background-color: var(--main-color);
+  height: 177px;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+}

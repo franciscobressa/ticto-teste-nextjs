@@ -1,0 +1,16 @@
+.button {
+  height: 53px;
+  width: 245px;
+  background-color: var(--button-color) !important;
+  border: none;
+  color: #fff;
+  border-radius: 8px;
+}
+
+.button:hover {
+  cursor: pointer;
+}
+
+.button:active {
+  transform: scale(0.95);
+}
