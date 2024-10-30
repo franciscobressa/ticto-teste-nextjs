@@ -3,6 +3,7 @@ import Card from "./components/Card/Card";
 import CardHeader from "./components/Card/CardHeader/CardHeader";
 import styles from "./page.module.css";
 import CardBody from "./components/Card/CardBody/CardBody";
+import List from "./components/List/List";
 export default function Home() {
   return (
     <div>
@@ -48,6 +49,7 @@ export default function Home() {
             <CardBody>R$ 12156,00</CardBody>
           </Card>
         </div>
+        <List />
       </main>
     </div>
   );
