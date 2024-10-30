@@ -1,0 +1,75 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal {
+  background-color: #fff;
+  width: 400px;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modalHeader {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.modalForm {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 1em 0;
+}
+
+.modalForm input {
+  padding: 18px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #d9d9d9;
+}
+
+.radioGroup {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 12px 0;
+}
+
+.radioInput {
+  display: none; /* Oculta o radio button padrão */
+}
+
+.radioLabel {
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 50%;
+  transition: background-color 0.3s, color 0.3s;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+/* Estilo quando o radio está selecionado */
+.radioInput:checked + .radioLabel {
+  background-color: var(--main-color);
+  color: white;
+}
+
+.radioLabel:hover {
+  background-color: #e0e0e0;
+}
