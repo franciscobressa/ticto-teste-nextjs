@@ -6,8 +6,13 @@ export default function Header() {
   return (
     <header className={styles.header}>
       <div className={styles.wrapper}>
-        <Image src={"/images/logo.svg"} alt={"logo"} width={186} height={35} />
-
+        <Image
+          className={styles.logo}
+          src={"/images/logo.svg"}
+          alt={"logo"}
+          width={186}
+          height={35}
+        />{" "}
         <Button
           buttonFunction={() => alert("Nova Transação")}
           text="NOVA TRANSAÇÃO"

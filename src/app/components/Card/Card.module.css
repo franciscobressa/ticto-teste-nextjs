@@ -1,0 +1,13 @@
+.card {
+  background-color: white;
+  height: 10vw;
+  width: 30vw;
+  border-radius: 8px;
+}
+
+@media (max-width: 1024px) {
+  .card {
+    min-height: 30vw;
+    width: 100%;
+  }
+}

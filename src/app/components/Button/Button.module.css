@@ -14,3 +14,13 @@
 .button:active {
   transform: scale(0.95);
 }
+
+.logo {
+  width: 186px; /* Tamanho padrão para desktop */
+}
+
+@media (max-width: 768px) {
+  .button {
+    width: 150px;
+  }
+}

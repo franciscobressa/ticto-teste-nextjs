@@ -5,7 +5,31 @@
 
 .wrapper {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   height: 100%;
+  width: 75vw;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.logoWrapper {
+  width: 186px;
+  height: 35px;
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    width: 95vw;
+  }
+}
+
+.logo {
+  width: 186px; /* Tamanho padrão para desktop */
+}
+
+@media (max-width: 768px) {
+  .logo {
+    width: 120px; /* Ajuste o valor conforme necessário para mobile */
+  }
 }
