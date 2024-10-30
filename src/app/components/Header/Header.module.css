@@ -25,11 +25,11 @@
 }
 
 .logo {
-  width: 186px; /* Tamanho padrão para desktop */
+  width: 186px;
 }
 
 @media (max-width: 768px) {
   .logo {
-    width: 120px; /* Ajuste o valor conforme necessário para mobile */
+    width: 120px;
   }
 }

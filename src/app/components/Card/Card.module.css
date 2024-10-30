@@ -1,8 +1,10 @@
 .card {
-  background-color: white;
   height: 10vw;
   width: 30vw;
   border-radius: 8px;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
 }
 
 @media (max-width: 1024px) {

@@ -16,7 +16,7 @@
 }
 
 .logo {
-  width: 186px; /* Tamanho padrão para desktop */
+  width: 186px;
 }
 
 @media (max-width: 768px) {

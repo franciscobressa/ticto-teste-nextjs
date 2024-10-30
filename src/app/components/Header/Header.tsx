@@ -12,7 +12,7 @@ export default function Header() {
           alt={"logo"}
           width={186}
           height={35}
-        />{" "}
+        />
         <Button
           buttonFunction={() => alert("Nova Transação")}
           text="NOVA TRANSAÇÃO"
