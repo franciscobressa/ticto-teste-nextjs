@@ -10,16 +10,31 @@ import { useAppSelector } from "@/common/hooks/useAppSelector";
 
 export default function Modal() {
   const [nome, setNome] = useState("");
-  const [preco, setPreco] = useState("");
+  const [valor, setValor] = useState("");
   const [tipo, setTipo] = useState<Movimentacao>(Movimentacao.ENTRADA);
   const [categoria, setCategoria] = useState("");
+
+  const handleChangeValor = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const inputValue = e.target.value.replace(/\D/g, "");
+    const formattedValue = formatValue(inputValue);
+    setValor(formattedValue);
+  };
+
+  const formatValue = (value: string) => {
+    if (!value) return "";
+    const numberValue = parseFloat(value);
+    const integerPart = Math.floor(numberValue / 100);
+    const decimalPart = (numberValue % 100).toString().padStart(2, "0");
+    const formattedInteger = integerPart.toLocaleString("pt-BR");
+    return `${formattedInteger},${decimalPart}`;
+  };
 
   const dispatch = useAppDispatch();
   const financeiroListLength = useAppSelector(
     (state) => state.Financeiro.list.length
   );
   const handleCadastro = () => {
-    if (!nome || !preco || !categoria) {
+    if (!nome || !valor || !categoria) {
       alert("Por favor, preencha todos os campos.");
       return;
     }
@@ -31,21 +46,12 @@ export default function Modal() {
         categoria,
         data: String(new Date()),
         movimentacao: tipo,
-        valor: preco,
+        valor: Number(valor.replace(".", "").replace(",", ".")),
       })
     );
 
     dispatch(setModalCadastro(false));
   };
-
-  function formatPrice(value: string): string {
-    const cleanedValue = value.replace(/\D/g, "");
-
-    const integerPart = cleanedValue.slice(0, -2) || "0";
-    const decimalPart = cleanedValue.slice(-2).padStart(2, "0");
-
-    return parseFloat(integerPart).toLocaleString("pt-BR") + "," + decimalPart;
-  }
 
   return (
     <div
@@ -74,14 +80,11 @@ export default function Modal() {
           />
           <input
             type="text"
-            placeholder="Preço"
-            name="preco"
+            placeholder="Valor"
+            name="valor"
             required
-            value={preco}
-            onChange={(e) => {
-              const value = e.target.value;
-              setPreco(formatPrice(value));
-            }}
+            value={valor}
+            onChange={handleChangeValor}
           />
           <div className={style.radioGroup}>
             <input

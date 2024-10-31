@@ -8,7 +8,7 @@ export enum Movimentacao {
 export interface RegistroFinanceiro {
   id: number;
   descricao: string;
-  valor: string;
+  valor: number;
   categoria: string;
   data: string;
   movimentacao: Movimentacao;
@@ -43,18 +43,12 @@ export const FinanceiroSlice = createSlice({
 export const selectTotalEntrada = (state: { Financeiro: Financeiro }) =>
   state.Financeiro.list
     .filter((item) => item.movimentacao === Movimentacao.ENTRADA)
-    .reduce(
-      (total, item) => total + parseFloat(item.valor.replace(",", ".")),
-      0
-    );
+    .reduce((total, item) => total + Number(item.valor), 0);
 
 export const selectTotalSaida = (state: { Financeiro: Financeiro }) =>
   state.Financeiro.list
     .filter((item) => item.movimentacao === Movimentacao.SAIDA)
-    .reduce(
-      (total, item) => total + parseFloat(item.valor.replace(",", ".")),
-      0
-    );
+    .reduce((total, item) => total + Number(item.valor), 0);
 
 export const selectSaldoTotal = (state: { Financeiro: Financeiro }) =>
   selectTotalEntrada(state) - selectTotalSaida(state);
