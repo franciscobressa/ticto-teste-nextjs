@@ -45,7 +45,7 @@ export default function List() {
             <div key={index} className={style.listItemWrapper}>
               <div className={style.listItem}>
                 <div className={style.gridContainer}>
-                  <div className={style.gridItem}>{item.categoria}</div>
+                  <div className={style.gridItem}>{item.descricao}</div>
                   <div
                     className={style.gridItem}
                     style={{
