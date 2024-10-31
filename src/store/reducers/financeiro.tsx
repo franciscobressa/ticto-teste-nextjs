@@ -40,6 +40,25 @@ export const FinanceiroSlice = createSlice({
   },
 });
 
+export const selectTotalEntrada = (state: { Financeiro: Financeiro }) =>
+  state.Financeiro.list
+    .filter((item) => item.movimentacao === Movimentacao.ENTRADA)
+    .reduce(
+      (total, item) => total + parseFloat(item.valor.replace(",", ".")),
+      0
+    );
+
+export const selectTotalSaida = (state: { Financeiro: Financeiro }) =>
+  state.Financeiro.list
+    .filter((item) => item.movimentacao === Movimentacao.SAIDA)
+    .reduce(
+      (total, item) => total + parseFloat(item.valor.replace(",", ".")),
+      0
+    );
+
+export const selectSaldoTotal = (state: { Financeiro: Financeiro }) =>
+  selectTotalEntrada(state) - selectTotalSaida(state);
+
 export const { setFinanceiroListItem, removeFinanceiroListItem, setModal } =
   FinanceiroSlice.actions;
 

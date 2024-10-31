@@ -7,6 +7,12 @@ import CardBody from "./components/Card/CardBody/CardBody";
 import List from "./components/List/List";
 import Modal from "./components/Modal/Modal";
 import { useAppSelector } from "@/common/hooks/useAppSelector";
+import {
+  selectSaldoTotal,
+  selectTotalEntrada,
+  selectTotalSaida,
+} from "@/store/reducers/financeiro";
+
 export default function Home() {
   const isModalOpen = useAppSelector((state) => state.Financeiro.modal);
   return (
@@ -26,7 +32,9 @@ export default function Home() {
                 />
               </div>
             </CardHeader>
-            <CardBody>R$ 12156,00</CardBody>
+            <CardBody>
+              R$ {useAppSelector(selectTotalEntrada).toFixed(2)}
+            </CardBody>
           </Card>
           <Card>
             <CardHeader>
@@ -41,16 +49,24 @@ export default function Home() {
                 />
               </div>
             </CardHeader>
-            <CardBody>R$ 12156,00</CardBody>
+            <CardBody>
+              R$ {useAppSelector(selectTotalSaida).toFixed(2)}
+            </CardBody>
           </Card>
           <Card
-            backgroundColor="var(--success-color)"
+            backgroundColor={
+              useAppSelector(selectSaldoTotal) >= 0
+                ? "var(--green-text-color)"
+                : "var(--red-text-color)"
+            }
             color="var(--white-text-color)"
           >
             <CardHeader>
               <span>Saldo Total</span>
             </CardHeader>
-            <CardBody>R$ 12156,00</CardBody>
+            <CardBody>
+              R$ {useAppSelector(selectSaldoTotal).toFixed(2)}
+            </CardBody>
           </Card>
         </div>
         <List />
