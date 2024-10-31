@@ -9,6 +9,20 @@ import { removeRegistro } from "@/store/actions/financeiro";
 export default function List() {
   const financeiroList = useAppSelector((state) => state.Financeiro.list);
   const dispatch = useAppDispatch();
+
+  if (!(financeiroList.length > 0)) {
+    return (
+      <div
+        style={{
+          textAlign: "center",
+          paddingTop: "3em",
+          fontSize: "15px",
+        }}
+      >
+        Nenhuma transação cadastrada
+      </div>
+    );
+  }
   return (
     <div className={style.listWrapper}>
       <div className={style.list}>
