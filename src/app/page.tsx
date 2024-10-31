@@ -1,10 +1,14 @@
+"use client";
 import Image from "next/image";
 import Card from "./components/Card/Card";
 import CardHeader from "./components/Card/CardHeader/CardHeader";
 import styles from "./page.module.css";
 import CardBody from "./components/Card/CardBody/CardBody";
 import List from "./components/List/List";
+import Modal from "./components/Modal/Modal";
+import { useAppSelector } from "@/common/hooks/useAppSelector";
 export default function Home() {
+  const isModalOpen = useAppSelector((state) => state.Financeiro.modal);
   return (
     <div>
       <main className={styles.main}>
@@ -50,6 +54,7 @@ export default function Home() {
           </Card>
         </div>
         <List />
+        {isModalOpen && <Modal />}
       </main>
     </div>
   );

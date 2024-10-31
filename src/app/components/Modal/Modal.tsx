@@ -1,31 +1,91 @@
+"use client";
+import { useState } from "react";
 import Image from "next/image";
 import Button from "../Button/Button";
 import style from "./Modal.module.css";
+import { useAppDispatch } from "@/common/hooks/useAppDispatch";
+import { cadastraRegistro, setModalCadastro } from "@/store/actions/financeiro";
+import { Movimentacao } from "@/store/reducers/financeiro";
 
-interface ModalProps {
-  setModal: (modal: boolean) => void;
-}
+export default function Modal() {
+  const [nome, setNome] = useState("");
+  const [preco, setPreco] = useState("");
+  const [tipo, setTipo] = useState<Movimentacao>(Movimentacao.ENTRADA);
+  const [categoria, setCategoria] = useState("");
 
-export default function Modal({ setModal }: ModalProps) {
+  const dispatch = useAppDispatch();
+  const handleCadastro = () => {
+    if (!nome || !preco || !categoria) {
+      alert("Por favor, preencha todos os campos.");
+      return;
+    }
+
+    dispatch(
+      cadastraRegistro({
+        descricao: nome,
+        categoria,
+        data: String(new Date()),
+        movimentacao: tipo,
+        valor: preco,
+      })
+    );
+
+    dispatch(setModalCadastro(false));
+  };
+
+  function formatPrice(value: string): string {
+    const cleanedValue = value.replace(/\D/g, "");
+
+    const integerPart = cleanedValue.slice(0, -2) || "0";
+    const decimalPart = cleanedValue.slice(-2).padStart(2, "0");
+
+    return parseFloat(integerPart).toLocaleString("pt-BR") + "," + decimalPart;
+  }
+
   return (
-    <div onClick={() => setModal(false)} className={style.modalOverlay}>
+    <div
+      onClick={() => dispatch(setModalCadastro(false))}
+      className={style.modalOverlay}
+    >
       <div onClick={(e) => e.stopPropagation()} className={style.modal}>
         <div className={style.modalHeader}>
-          <span className="pointer" onClick={() => setModal(false)}>
+          <span
+            className="pointer"
+            onClick={() => dispatch(setModalCadastro(false))}
+          >
             x
           </span>
         </div>
         <h4>Cadastrar Transação</h4>
 
-        <form className={style.modalForm}>
-          <input placeholder="Nome" type="text" name="nome" required />
-          <input type="number" placeholder="Preço" name="preco" required />
+        <form className={style.modalForm} onSubmit={(e) => e.preventDefault()}>
+          <input
+            placeholder="Nome"
+            type="text"
+            name="nome"
+            required
+            value={nome}
+            onChange={(e) => setNome(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Preço"
+            name="preco"
+            required
+            value={preco}
+            onChange={(e) => {
+              const value = e.target.value;
+              setPreco(formatPrice(value));
+            }}
+          />
           <div className={style.radioGroup}>
             <input
               type="radio"
               id="entrada"
               name="tipo"
-              value="entrada"
+              value={Movimentacao.ENTRADA}
+              checked={tipo === "entrada"}
+              onChange={() => setTipo(Movimentacao.ENTRADA)}
               className={style.radioInput}
             />
             <label htmlFor="entrada" className={style.radioLabel}>
@@ -42,7 +102,9 @@ export default function Modal({ setModal }: ModalProps) {
               type="radio"
               id="saida"
               name="tipo"
-              value="saida"
+              value={Movimentacao.SAIDA}
+              checked={tipo === "saida"}
+              onChange={() => setTipo(Movimentacao.SAIDA)}
               className={style.radioInput}
             />
             <label htmlFor="saida" className={style.radioLabel}>
@@ -60,13 +122,15 @@ export default function Modal({ setModal }: ModalProps) {
             placeholder="Categoria"
             name="categoria"
             required
+            value={categoria}
+            onChange={(e) => setCategoria(e.target.value)}
           />
         </form>
 
         <Button
           fullWidth
           bold
-          buttonFunction={() => alert("Cadastra")}
+          buttonFunction={handleCadastro}
           text="CADASTRAR"
         />
       </div>

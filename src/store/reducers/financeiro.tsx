@@ -1,15 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-enum Movimentacao {
+export enum Movimentacao {
   ENTRADA = "entrada",
   SAIDA = "saida",
 }
 
-interface RegistroFinanceiro {
+export interface RegistroFinanceiro {
   descricao: string;
-  valor: number;
+  valor: string;
   categoria: string;
-  data: Date;
+  data: string;
   movimentacao: Movimentacao;
 }
 
@@ -19,15 +19,7 @@ interface Financeiro {
 }
 
 const initialState: Financeiro = {
-  list: [
-    {
-      descricao: "string",
-      valor: 213,
-      categoria: "string",
-      data: new Date(),
-      movimentacao: Movimentacao.ENTRADA,
-    },
-  ],
+  list: [],
   modal: false,
 };
 
@@ -35,12 +27,15 @@ export const FinanceiroSlice = createSlice({
   name: "Financeiro",
   initialState,
   reducers: {
-    setFinanceiroList: (state, action) => {
-      return { ...state, list: action.payload };
+    setFinanceiroListItem: (state, action) => {
+      state.list.push(action.payload);
+    },
+    setModal: (state, action) => {
+      state.modal = action.payload;
     },
   },
 });
 
-export const { setFinanceiroList } = FinanceiroSlice.actions;
+export const { setFinanceiroListItem, setModal } = FinanceiroSlice.actions;
 
 export default FinanceiroSlice.reducer;

@@ -2,10 +2,10 @@
 import Image from "next/image";
 import styles from "./Header.module.css";
 import Button from "../Button/Button";
-import Modal from "../Modal/Modal";
-import { useState } from "react";
+import { setModalCadastro } from "@/store/actions/financeiro";
+import { useAppDispatch } from "@/common/hooks/useAppDispatch";
 export default function Header() {
-  const [modal, setModal] = useState<boolean>(false);
+  const dispatch = useAppDispatch();
   return (
     <>
       <header className={styles.header}>
@@ -17,10 +17,12 @@ export default function Header() {
             width={186}
             height={35}
           />
-          <Button buttonFunction={() => setModal(true)} text="NOVA TRANSAÇÃO" />
+          <Button
+            buttonFunction={() => dispatch(setModalCadastro(true))}
+            text="NOVA TRANSAÇÃO"
+          />
         </div>
       </header>
-      {!!modal && <Modal setModal={setModal} />}
     </>
   );
 }
