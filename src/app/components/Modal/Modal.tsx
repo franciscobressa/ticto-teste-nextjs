@@ -6,6 +6,7 @@ import style from "./Modal.module.css";
 import { useAppDispatch } from "@/common/hooks/useAppDispatch";
 import { cadastraRegistro, setModalCadastro } from "@/store/actions/financeiro";
 import { Movimentacao } from "@/store/reducers/financeiro";
+import { useAppSelector } from "@/common/hooks/useAppSelector";
 
 export default function Modal() {
   const [nome, setNome] = useState("");
@@ -14,6 +15,9 @@ export default function Modal() {
   const [categoria, setCategoria] = useState("");
 
   const dispatch = useAppDispatch();
+  const financeiroListLength = useAppSelector(
+    (state) => state.Financeiro.list.length
+  );
   const handleCadastro = () => {
     if (!nome || !preco || !categoria) {
       alert("Por favor, preencha todos os campos.");
@@ -22,6 +26,7 @@ export default function Modal() {
 
     dispatch(
       cadastraRegistro({
+        id: financeiroListLength + 1,
         descricao: nome,
         categoria,
         data: String(new Date()),

@@ -1,4 +1,4 @@
-export default function FormatDate(dataString: Date): string {
+export default function FormatDate(dataString: string): string {
   const data = new Date(dataString);
 
   const opcoesData: Intl.DateTimeFormatOptions = {

@@ -6,6 +6,7 @@ export enum Movimentacao {
 }
 
 export interface RegistroFinanceiro {
+  id: number;
   descricao: string;
   valor: string;
   categoria: string;
@@ -30,12 +31,16 @@ export const FinanceiroSlice = createSlice({
     setFinanceiroListItem: (state, action) => {
       state.list.push(action.payload);
     },
+    removeFinanceiroListItem: (state, action) => {
+      state.list = state.list.filter((item) => item.id !== action.payload);
+    },
     setModal: (state, action) => {
       state.modal = action.payload;
     },
   },
 });
 
-export const { setFinanceiroListItem, setModal } = FinanceiroSlice.actions;
+export const { setFinanceiroListItem, removeFinanceiroListItem, setModal } =
+  FinanceiroSlice.actions;
 
 export default FinanceiroSlice.reducer;

@@ -1,8 +1,12 @@
 import Image from "next/image";
 import style from "./DeleteButton.module.css";
-export default function DeleteButton() {
+
+interface DeleteButtonProps {
+  deleteFunction: () => void;
+}
+export default function DeleteButton({ deleteFunction }: DeleteButtonProps) {
   return (
-    <div className={style.DeleteButton}>
+    <div className={style.DeleteButton} onClick={deleteFunction}>
       <Image
         height={15}
         width={14}

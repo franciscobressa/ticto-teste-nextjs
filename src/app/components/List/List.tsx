@@ -3,9 +3,12 @@ import style from "./List.module.css";
 import DeleteButton from "../DeleteButton/DeleteButton";
 import { useAppSelector } from "@/common/hooks/useAppSelector";
 import FormatDate from "@/common/utils/FormatDate";
+import { useAppDispatch } from "@/common/hooks/useAppDispatch";
+import { removeRegistro } from "@/store/actions/financeiro";
 
 export default function List() {
   const financeiroList = useAppSelector((state) => state.Financeiro.list);
+  const dispatch = useAppDispatch();
   return (
     <div className={style.listWrapper}>
       <div className={style.list}>
@@ -44,7 +47,9 @@ export default function List() {
                   <div className={style.gridItem}>{item.categoria}</div>
                   <div className={style.gridItem}>{FormatDate(item.data)}</div>
                   <div className={style.gridItem}>
-                    <DeleteButton />
+                    <DeleteButton
+                      deleteFunction={() => dispatch(removeRegistro(item.id))}
+                    />
                   </div>
                 </div>
               </div>
