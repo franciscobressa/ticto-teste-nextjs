@@ -9,7 +9,8 @@ Foi projetado para ter um design responsivo em todos os tamanhos de tela.
 - O usuário deve poder cadastrar novos registros e visualizar o resultado em tempo real.
 
 Live Demo: https://ticto-teste-nextjs.vercel.app/
-<img src="https://github.com/user-attachments/assets/e0dc329b-7ce8-4933-ac35-1e9378b0e197" width="400px"/>
+
+<img src="https://github.com/user-attachments/assets/e0dc329b-7ce8-4933-ac35-1e9378b0e197" width="500px"/>
 <img src="https://github.com/user-attachments/assets/84530a54-3591-4bd4-9971-bbe8c5b35524" width="300px"/>
 
 
