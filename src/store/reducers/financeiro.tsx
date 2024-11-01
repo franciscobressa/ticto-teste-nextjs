@@ -20,7 +20,40 @@ interface Financeiro {
 }
 
 const initialState: Financeiro = {
-  list: [],
+  list: [
+    {
+      id: 1,
+      descricao: "Salário",
+      categoria: "Mensal",
+      data: "Thu Oct 31 2024 20:30:10 GMT-0400 (Horário Padrão do Amazonas)",
+      movimentacao: Movimentacao.ENTRADA,
+      valor: 6897.41,
+    },
+    {
+      id: 2,
+      descricao: "Água",
+      categoria: "Mensal",
+      data: "Thu Oct 31 2024 20:30:20 GMT-0400 (Horário Padrão do Amazonas)",
+      movimentacao: Movimentacao.SAIDA,
+      valor: 89.05,
+    },
+    {
+      id: 3,
+      descricao: "Luz",
+      categoria: "Mensal",
+      data: "Thu Oct 31 2024 20:30:32 GMT-0400 (Horário Padrão do Amazonas)",
+      movimentacao: Movimentacao.SAIDA,
+      valor: 186.1,
+    },
+    {
+      id: 4,
+      descricao: "Restaurante",
+      categoria: "Consumo",
+      data: "Thu Oct 31 2024 20:30:50 GMT-0400 (Horário Padrão do Amazonas)",
+      movimentacao: Movimentacao.SAIDA,
+      valor: 101.52,
+    },
+  ],
   modal: false,
 };
 
